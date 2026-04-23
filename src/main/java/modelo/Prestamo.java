@@ -27,6 +27,10 @@ public class Prestamo {
         return ++contadorId;
     }
 
+    public static int getContadorId() {
+        return contadorId;
+    }
+
     public int getId() {
         return id;
     }
@@ -35,9 +39,41 @@ public class Prestamo {
         return libro;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public LocalDate getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public LocalDate getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+
+    public static void setContadorId(int contadorId) {
+        Prestamo.contadorId = contadorId;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setFechaSalida(LocalDate fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
+
     public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
-    
+
+    public void devolverLibro() {
+        libro.devolver();
+        fechaDevolucion = LocalDate.now();
+    }
     
 }

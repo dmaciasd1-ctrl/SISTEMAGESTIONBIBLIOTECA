@@ -45,6 +45,9 @@ public class Categoria {
     public void setLibros(ArrayList<Libro> libros) {
         this.libros = libros;
     }
-
+    
+    public void agregarLibro(Libro libro) {
+        libros.add(libro);
+    }
     
 }
