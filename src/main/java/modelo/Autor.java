@@ -9,5 +9,56 @@ package modelo;
  * @author ESTUDIANTE
  */
 public class Autor {
+    private static int contador = 1;
+    private int id;
+    private final String nombre;
+    private String pais;
+    private int año_nacimiento;
+
+    public Autor(int id, String nombre, String pais, int año_nacimiento) {
+        this.id = contador++;
+        this.nombre = nombre;
+        this.pais = pais;
+        this.año_nacimiento = año_nacimiento;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public int getAño_nacimiento() {
+        return año_nacimiento;
+    }
+
+    public static void setContador(int contador) {
+        Autor.contador = contador;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public void setAño_nacimiento(int año_nacimiento) {
+        this.año_nacimiento = año_nacimiento;
+    }
+
+    
+    
     
 }
