@@ -15,7 +15,7 @@ public class Autor {
     private String pais;
     private int año_nacimiento;
 
-    public Autor(int id, String nombre, String pais, int año_nacimiento) {
+    public Autor(String nombre, String pais, int año_nacimiento) {
         this.id = contador++;
         this.nombre = nombre;
         this.pais = pais;
@@ -40,14 +40,6 @@ public class Autor {
 
     public int getAño_nacimiento() {
         return año_nacimiento;
-    }
-
-    public static void setContador(int contador) {
-        Autor.contador = contador;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setPais(String pais) {

@@ -4,27 +4,28 @@
  */
 package modelo;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 /**
  *
  * @author ESTUDIANTE
  */
 public class Prestamo {
-    private static int contadorId = 0;
+    private static int contadorId = 1;
     private final int id;
     private Libro libro;
     private String usuario;
-    private LocalDate fechaSalida;
+    private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
 
-    public Prestamo(Libro libro, String usuario) {
+    public Prestamo(Libro libro, String usuario, LocalDate fechaPrestamo) {
         this.id = generarNuevoId();
         this.libro = libro;
         this.usuario = usuario;
-        this.fechaSalida = LocalDate.now();
+        this.fechaPrestamo = fechaPrestamo;
     }
     
     private static int generarNuevoId() {
-        return ++contadorId;
+        return contadorId++;
     }
 
     public static int getContadorId() {
@@ -43,8 +44,8 @@ public class Prestamo {
         return usuario;
     }
 
-    public LocalDate getFechaSalida() {
-        return fechaSalida;
+    public LocalDate getFechaPrestamo() {
+        return fechaPrestamo;
     }
 
     public LocalDate getFechaDevolucion() {
@@ -63,17 +64,36 @@ public class Prestamo {
         this.usuario = usuario;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
-        this.fechaSalida = fechaSalida;
+    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+        this.fechaPrestamo = fechaPrestamo;
     }
 
     public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
 
-    public void devolverLibro() {
+    public void devolverLibro(LocalDate fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
         libro.devolver();
-        fechaDevolucion = LocalDate.now();
+    }
+    
+    public double calcularMulta() {
+
+        LocalDate fechaFin;
+
+        if (fechaDevolucion == null) {
+            fechaFin = LocalDate.now();
+        } else {
+            fechaFin = fechaDevolucion;
+        }
+
+        long dias = ChronoUnit.DAYS.between(fechaPrestamo, fechaFin);
+
+        if (dias > 7) {
+            return (dias - 7) * 1000;
+        }
+
+        return 0;
     }
     
 }

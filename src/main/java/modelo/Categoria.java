@@ -16,10 +16,10 @@ public class Categoria {
     private final String nombre;
     private ArrayList<Libro> libros;
 
-    public Categoria(int id, String nombre, ArrayList<Libro> libros) {
-        this.id = id;
+    public Categoria(String nombre) {
+        this.id = contador++;
         this.nombre = nombre;
-        this.libros = libros;
+        this.libros = new ArrayList<>();    
     }
 
     public static int getContador() {
@@ -36,10 +36,6 @@ public class Categoria {
 
     public ArrayList<Libro> getLibros() {
         return libros;
-    }
-
-    public static void setContador(int contador) {
-        Categoria.contador = contador;
     }
 
     public void setLibros(ArrayList<Libro> libros) {
